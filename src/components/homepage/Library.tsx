@@ -2,22 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import LibraryCard from "../shared/libraryCard";
-
-interface IWorkout {
-    id: number;
-    name: string;
-    image: string;
-    muscleGroups: string[];
-    equipment: string;
-    difficulty: string;
-    duration: number;
-    caloriesBurned: number;
-    sets: number;
-    reps: string;
-    rating: number;
-    description: string;
-    instructions: string[];
-}
+import { IWorkout } from "@/types/library.types";
 
 const Library = () => {
 
@@ -39,7 +24,6 @@ const Library = () => {
 
             <div className="container mx-auto px-6">
 
-                {/* Heading */}
                 <div className="mb-8">
                     <h2 className="text-3xl font-bold text-white">
                         THE LIBRARY
@@ -50,7 +34,6 @@ const Library = () => {
                     </p>
                 </div>
 
-                {/* Workout Cards */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
                     {libraryData.map((workout) => (
