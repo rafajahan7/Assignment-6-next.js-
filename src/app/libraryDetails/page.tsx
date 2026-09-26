@@ -3,10 +3,12 @@
 import React, { useEffect, useState } from "react";
 import LibraryCard from "@/components/shared/libraryCard";
 import { IWorkout } from "@/types/library.types";
+import { useWorkout } from "@/context/WorkoutContext";
 
 const Library = () => {
 
     const [libraryData, setLibraryData] = useState<IWorkout[]>([]);
+    const { addToPlan, addToSaved } = useWorkout();
 
     useEffect(() => {
         const getLibrary = async () => {

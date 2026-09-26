@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import { IWorkout } from "@/types/library.types";
+import { useWorkout } from "@/context/WorkoutContext";
+import { toast } from "react-toastify";
 
 interface ILibraryDetailsProps {
     params: Promise<{
@@ -12,12 +14,15 @@ interface ILibraryDetailsProps {
 const LibraryDetails = ({ params }: ILibraryDetailsProps) => {
     const [workout, setWorkout] = useState<IWorkout | null>(null);
 
+    const { addToPlan, addToSaved } = useWorkout();
+
+    // Unwrap params Promise
+    const { id } = React.use(params);
+
     useEffect(() => {
         const getLibrary = async () => {
             const response = await fetch("/libraryData.json");
             const data: IWorkout[] = await response.json();
-
-            const { id } = await params;
 
             const selectedWorkout = data.find(
                 (library) => library.id.toString() === id
@@ -27,7 +32,7 @@ const LibraryDetails = ({ params }: ILibraryDetailsProps) => {
         };
 
         getLibrary();
-    }, [params]);
+    }, [id]);
 
     if (!workout) {
         return (
@@ -161,11 +166,23 @@ const LibraryDetails = ({ params }: ILibraryDetailsProps) => {
                     {/* Buttons */}
                     <div className="card-actions mt-5">
 
-                        <button className="btn bg-[#ccff00] text-black border-none">
+                        <button
+                            onClick={() => {
+                                addToPlan(workout);
+                                toast.success("Added to today's plan!");
+                            }}
+                            className="btn bg-[#ccff00] text-black border-none"
+                        >
                             Add to today's plan
                         </button>
 
-                        <button className="btn btn-outline border-gray-700 text-white">
+                        <button
+                            onClick={() => {
+                                addToSaved(workout);
+                                toast.success("Saved for later!");
+                            }}
+                            className="btn btn-outline border-gray-700 text-white"
+                        >
                             Save for later
                         </button>
 

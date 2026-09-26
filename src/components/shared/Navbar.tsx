@@ -1,64 +1,62 @@
+"use client";
 
-import Image from 'next/image';
-import React from 'react';
-import logo from '@/assets/logo.png';
+import React from "react";
+import Link from "next/link";
+import { useWorkout } from "@/context/WorkoutContext";
 
 const Navbar = () => {
-  return (
-    <div className="navbar bg-base-100 shadow-sm px-6">
+    const { plan, saved } = useWorkout();
 
-      {/* Logo */}
-      <div className="navbar-start">
-        <div className="flex items-center gap-2">
-          <Image src={logo} alt="logo" width={35} height={35} />
-          <a className="text-xl font-bold">FITLOG</a>
-        </div>
-      </div>
+    return (
+        <nav className="w-full bg-[#0d0f12] border-b border-gray-800">
+            <div className="container mx-auto px-6 py-5 flex items-center justify-between">
 
-      {/* Navigation Links */}
-      <div className="navbar-center">
-        <ul className="menu menu-horizontal gap-2">
+                {/* Logo */}
+                <Link
+                    href="/"
+                    className="text-white text-xl font-bold"
+                >
+                    FITLOG
+                </Link>
 
-          {/* Active Link */}
-          <li>
-            <a className="bg-black text-white rounded-full px-5">
-              Workout
-            </a>
-          </li>
+                {/* Navigation Links */}
+                <div className="flex items-center gap-6">
+                    <Link
+                        href="/"
+                        className="text-gray-300 hover:text-[#ccff00]"
+                    >
+                        Workout
+                    </Link>
 
-          {/* Normal Link */}
-          <li>
-            <a className="px-5">
-              My Plan
-            </a>
-          </li>
+                    <Link
+                        href="/my-plan"
+                        className="text-gray-300 hover:text-[#ccff00]"
+                    >
+                        My Plan
+                    </Link>
+                </div>
 
-        </ul>
-      </div>
+                {/* Plan and Saved */}
+                <div className="flex items-center gap-3">
 
-      {/* Plan & Saved */}
-      <div className="navbar-end gap-3">
+                    <Link
+                        href="/my-plan"
+                        className="btn bg-[#ccff00] text-black border-none"
+                    >
+                        Plan {plan.length}
+                    </Link>
 
-        {/* Plan Badge */}
-        <div className="flex items-center gap-2">
-          <span className="text-sm">Plan</span>
-          <span className="bg-[#ccff00] text-black rounded-full px-3 py-1 text-sm font-semibold">
-            2
-          </span>
-        </div>
+                    <Link
+                        href="/my-plan"
+                        className="btn btn-outline text-white border-gray-600"
+                    >
+                        Saved {saved.length}
+                    </Link>
 
-        {/* Saved Badge */}
-        <div className="flex items-center gap-2">
-          <span className="text-sm">Saved</span>
-          <span className="border border-black rounded-full px-3 py-1 text-sm font-semibold">
-            5
-          </span>
-        </div>
-
-      </div>
-
-    </div>
-  );
+                </div>
+            </div>
+        </nav>
+    );
 };
 
 export default Navbar;
