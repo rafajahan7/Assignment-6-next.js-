@@ -10,7 +10,7 @@ interface LibraryCardProps {
 const LibraryCard = ({ library }: LibraryCardProps) => {
     return (
         <Link
-            href={`/workouts/${library.id}`}
+            href={`/libraryDetails/${library.id}`}
             className="bg-[#171a20] rounded-lg overflow-hidden border border-gray-800 hover:border-[#ccff00] transition"
         >
 
