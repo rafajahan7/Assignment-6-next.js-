@@ -6,20 +6,47 @@ import { IWorkout } from "@/types/library.types";
 import { useWorkout } from "@/context/WorkoutContext";
 
 const Library = () => {
-
     const [libraryData, setLibraryData] = useState<IWorkout[]>([]);
+    const [error, setError] = useState("");
+
     const { addToPlan, addToSaved } = useWorkout();
 
     useEffect(() => {
         const getLibrary = async () => {
-            const response = await fetch("/libraryData.json");
-            const data = await response.json();
+            try {
+                const baseUrl = process.env.NEXT_PUBLIC_SERVER_BASE_URL;
 
-            setLibraryData(data);
+                const response = await fetch(
+                    `${baseUrl}/libraryData.json`
+                );
+
+                if (!response.ok) {
+                    throw new Error("Failed to fetch library data");
+                }
+
+                const data: IWorkout[] = await response.json();
+
+                setLibraryData(data);
+            } catch (error) {
+                console.error("Error fetching library:", error);
+                setError("Failed to load library.");
+            }
         };
 
         getLibrary();
     }, []);
+
+    if (error) {
+        return (
+            <section className="bg-[#0d0f12] py-16 min-h-screen">
+                <div className="container mx-auto px-6">
+                    <h2 className="text-3xl font-bold text-white">
+                        {error}
+                    </h2>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section id="library" className="bg-[#0d0f12] py-16">
