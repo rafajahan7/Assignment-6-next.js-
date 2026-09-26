@@ -26,7 +26,7 @@ const MyPlan = () => {
     );
 
     const totalCalories = workouts.reduce(
-        (total, workout) => total + Number(workout.calories || 0),
+        (total, workout) => total + Number(workout.caloriesBurned || 0),
         0
     );
 
@@ -37,10 +37,17 @@ const MyPlan = () => {
         }
 
         if (sortBy === "calories") {
-            return Number(a.calories || 0) - Number(b.calories || 0);
+            return (
+                Number(a.caloriesBurned || 0) -
+                Number(b.caloriesBurned || 0)
+            );
         }
 
-        return a.name.localeCompare(b.name);
+        if (sortBy === "rating") {
+            return Number(b.rating || 0) - Number(a.rating || 0);
+        }
+
+        return 0;
     });
 
     return (
@@ -56,7 +63,6 @@ const MyPlan = () => {
                     Cap of five lifts for today. Finish them, then load more.
                 </p>
             </div>
-
 
             {/* Stats */}
             <div className="w-full rounded-xl border border-[#242830] bg-[#12151b] px-5 py-4 mb-5">
@@ -74,7 +80,6 @@ const MyPlan = () => {
                         </p>
                     </div>
 
-
                     {/* Minutes */}
                     <div>
                         <p className="text-[10px] text-gray-500 mb-1">
@@ -85,7 +90,6 @@ const MyPlan = () => {
                             {totalMinutes}
                         </p>
                     </div>
-
 
                     {/* Calories */}
                     <div>
@@ -100,7 +104,6 @@ const MyPlan = () => {
 
                 </div>
             </div>
-
 
             {/* Tabs + Sort */}
             <div className="flex items-center justify-between mb-5">
@@ -132,7 +135,6 @@ const MyPlan = () => {
 
                 </div>
 
-
                 {/* Sort */}
                 <div className="flex items-center gap-2">
 
@@ -153,15 +155,14 @@ const MyPlan = () => {
                             Calories
                         </option>
 
-                        <option value="name">
-                            Name
+                        <option value="rating">
+                            Rating
                         </option>
                     </select>
 
                 </div>
 
             </div>
-
 
             {/* Workout Cards */}
             {sortedWorkouts.length > 0 ? (
