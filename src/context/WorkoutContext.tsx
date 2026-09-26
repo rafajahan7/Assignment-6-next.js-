@@ -26,7 +26,7 @@ export const WorkoutProvider = ({
     const [plan, setPlan] = useState<IWorkout[]>([]);
     const [saved, setSaved] = useState<IWorkout[]>([]);
 
-    // Add workout to Today's Plan
+   
     const addToPlan = (workout: IWorkout) => {
         const alreadyExists = plan.some(
             (item) => item.id === workout.id
@@ -41,7 +41,7 @@ export const WorkoutProvider = ({
         return true;
     };
 
-    // Add workout to Saved
+    
     const addToSaved = (workout: IWorkout) => {
         const alreadyExists = saved.some(
             (item) => item.id === workout.id
@@ -56,12 +56,12 @@ export const WorkoutProvider = ({
         return true;
     };
 
-    // Remove workout from Today's Plan
+    
     const removeFromPlan = (id: number) => {
         setPlan(plan.filter((item) => item.id !== id));
     };
 
-    // Remove workout from Saved
+   
     const removeFromSaved = (id: number) => {
         setSaved(saved.filter((item) => item.id !== id));
     };
@@ -82,7 +82,7 @@ export const WorkoutProvider = ({
     );
 };
 
-// Custom hook
+
 export const useWorkout = () => {
     const context = useContext(WorkoutContext);
 

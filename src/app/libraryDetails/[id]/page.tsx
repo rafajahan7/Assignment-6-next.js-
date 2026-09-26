@@ -16,7 +16,7 @@ const LibraryDetails = ({ params }: ILibraryDetailsProps) => {
 
     const { addToPlan, addToSaved } = useWorkout();
 
-    // Unwrap params Promise
+    
     const { id } = React.use(params);
 
     useEffect(() => {
@@ -48,7 +48,7 @@ const LibraryDetails = ({ params }: ILibraryDetailsProps) => {
         <div className="min-h-screen bg-[#0d0f12] p-6 flex items-center justify-center">
             <div className="card lg:card-side bg-[#0d0f12] text-white shadow-sm max-w-6xl w-full">
 
-                {/* Image */}
+               
                 <figure className="lg:w-1/2">
                     <img
                         src={workout.image}
@@ -57,7 +57,6 @@ const LibraryDetails = ({ params }: ILibraryDetailsProps) => {
                     />
                 </figure>
 
-                {/* Details */}
                 <div className="card-body lg:w-1/2">
 
                     <h2 className="card-title text-3xl font-bold uppercase">
@@ -68,7 +67,6 @@ const LibraryDetails = ({ params }: ILibraryDetailsProps) => {
                         {workout.description}
                     </p>
 
-                    {/* Muscle Groups */}
                     <div className="flex gap-2 mt-2">
                         {workout.muscleGroups.map((muscle) => (
                             <span
@@ -80,7 +78,6 @@ const LibraryDetails = ({ params }: ILibraryDetailsProps) => {
                         ))}
                     </div>
 
-                    {/* Stats */}
                     <div className="bg-[#171a20] border border-gray-800 rounded-lg mt-4">
 
                         <div className="flex justify-between p-3 border-b border-gray-800">
@@ -148,7 +145,6 @@ const LibraryDetails = ({ params }: ILibraryDetailsProps) => {
 
                     </div>
 
-                    {/* Instructions */}
                     <div className="mt-4">
                         <h3 className="font-bold text-sm uppercase">
                             Instructions
@@ -163,7 +159,6 @@ const LibraryDetails = ({ params }: ILibraryDetailsProps) => {
                         </ol>
                     </div>
 
-                    {/* Buttons */}
                     <div className="card-actions mt-5">
 
                         <button

@@ -19,7 +19,7 @@ const MyPlan = () => {
 
     const workouts = activeTab === "plan" ? plan : saved;
 
-    // Calculate stats
+   
     const totalExercises = workouts.length;
 
     const totalMinutes = workouts.reduce(
@@ -33,7 +33,7 @@ const MyPlan = () => {
         0
     );
 
-    // Sort workouts
+    
     const sortedWorkouts = [...workouts].sort((a, b) => {
 
         if (sortBy === "duration") {
@@ -60,7 +60,7 @@ const MyPlan = () => {
         return 0;
     });
 
-    // Mark workout as done
+    
     const handleMarkDone = (id: number, name: string) => {
 
         setCompletedWorkouts((prev) => {
@@ -75,7 +75,7 @@ const MyPlan = () => {
         toast.success(`${name} marked as done!`);
     };
 
-    // Remove workout
+    
     const handleRemove = (id: number, name: string) => {
 
         if (activeTab === "plan") {
@@ -94,7 +94,7 @@ const MyPlan = () => {
     return (
         <div className="min-h-screen bg-[#0d0f12] text-white px-7 py-6">
 
-            {/* Header */}
+           
             <div className="mb-7">
 
                 <h1 className="text-2xl font-extrabold tracking-tight">
@@ -108,12 +108,12 @@ const MyPlan = () => {
             </div>
 
 
-            {/* Stats */}
+           
             <div className="w-full rounded-xl border border-[#242830] bg-[#12151b] px-5 py-4 mb-5">
 
                 <div className="grid grid-cols-3">
 
-                    {/* Exercises */}
+                    
                     <div>
 
                         <p className="text-[10px] text-gray-500 mb-1">
@@ -127,7 +127,7 @@ const MyPlan = () => {
                     </div>
 
 
-                    {/* Minutes */}
+                   
                     <div>
 
                         <p className="text-[10px] text-gray-500 mb-1">
@@ -141,7 +141,7 @@ const MyPlan = () => {
                     </div>
 
 
-                    {/* Calories */}
+                   
                     <div>
 
                         <p className="text-[10px] text-gray-500 mb-1">
@@ -159,10 +159,10 @@ const MyPlan = () => {
             </div>
 
 
-            {/* Tabs + Sort */}
+           
             <div className="flex items-center justify-between mb-5">
 
-                {/* Tabs */}
+               
                 <div className="flex items-center bg-[#15181e] border border-[#242830] rounded-md p-0.5">
 
                     <button
@@ -191,7 +191,7 @@ const MyPlan = () => {
                 </div>
 
 
-                {/* Sort */}
+              
                 <div className="flex items-center gap-2">
 
                     <span className="text-[10px] text-gray-500">
@@ -224,7 +224,6 @@ const MyPlan = () => {
             </div>
 
 
-            {/* Workout Cards */}
             {sortedWorkouts.length > 0 ? (
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -246,7 +245,7 @@ const MyPlan = () => {
                                 }`}
                             >
 
-                                {/* Image */}
+                              
                                 <img
                                     src={workout.image}
                                     alt={workout.name}
@@ -260,7 +259,7 @@ const MyPlan = () => {
 
                                 <div className="p-5">
 
-                                    {/* Workout Name */}
+                                  
                                     <h2
                                         className={`text-lg font-bold ${
                                             isDone
@@ -272,16 +271,14 @@ const MyPlan = () => {
                                     </h2>
 
 
-                                    {/* Equipment */}
                                     <p className="text-sm text-gray-500 mt-1">
                                         {workout.equipment}
                                     </p>
 
 
-                                    {/* Buttons */}
                                     <div className="flex gap-2 mt-5">
 
-                                        {/* View Details */}
+   
                                         <Link
                                             href={`/libraryDetails/${workout.id}`}
                                             className="px-4 py-2 rounded-md bg-[#ccff00] text-black text-xs font-bold"
@@ -290,7 +287,7 @@ const MyPlan = () => {
                                         </Link>
 
 
-                                        {/* Mark as Done */}
+     
                                         <button
                                             onClick={() =>
                                                 handleMarkDone(
@@ -306,7 +303,6 @@ const MyPlan = () => {
                                             }`}
                                         >
 
-                                            {/* Check Icon */}
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 24 24"
@@ -329,7 +325,7 @@ const MyPlan = () => {
                                         </button>
 
 
-                                        {/* Remove */}
+                 
                                         <button
                                             onClick={() =>
                                                 handleRemove(
@@ -340,7 +336,6 @@ const MyPlan = () => {
                                             className="flex items-center gap-1 px-3 py-2 rounded-md border border-gray-700 text-xs text-gray-300 hover:bg-gray-800"
                                         >
 
-                                            {/* X Icon */}
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 24 24"
@@ -374,7 +369,6 @@ const MyPlan = () => {
 
             ) : (
 
-                /* Empty State */
                 <div className="h-[175px] w-full border border-dashed border-[#252a32] rounded-lg flex flex-col items-center justify-center">
 
                     <h2 className="text-xs font-bold tracking-wide text-gray-200 uppercase">
