@@ -2,7 +2,9 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useWorkout } from "@/context/WorkoutContext";
+import logo from "@/assets/logo.png";
 
 const Navbar = () => {
     const { plan, saved } = useWorkout();
@@ -14,9 +16,19 @@ const Navbar = () => {
                 {/* Logo */}
                 <Link
                     href="/"
-                    className="text-white text-xl font-bold"
+                    className="flex items-center gap-2"
                 >
-                    FITLOG
+                    <Image
+                        src={logo}
+                        alt="FITLOG"
+                        width={40}
+                        height={40}
+                        className="object-contain"
+                    />
+
+                    <span className="text-white text-xl font-bold">
+                        FITLOG
+                    </span>
                 </Link>
 
                 {/* Navigation Links */}
